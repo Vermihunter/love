@@ -1,36 +1,34 @@
 // import { useState } from "react";
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
-import "./App.css";
+//import "./App.css";
+import "./styles.scss";
+
+import LoveScene from "./components/LoveScene";
+
+const poem = [
+  [
+    "Beléptem a Coolba, mulatni indultam én,",
+    "Meglátok egy lányt, szebbet sosem láttam még,",
+    "Szoknyája emlékezetes - vörös, az aurája végtelen,",
+    "Egy pillanat alatt eldőlt, senki más nem kell nekem.",
+  ],
+  [
+    "Oldalra nézek - mondom nagyon bátran,",
+    '"Nekem ma vele beszélnem kell, legyen bármi az ára"',
+    "A szemed elkápráztatott, alig találtam a szavakat",
+    "Megdicsértem a hajad, és nyújtottad a karodat.",
+  ],
+  [
+    "Rihanna énekelt nekunk, S&M az első szám",
+    "Kívülről fújtuk mindketten - éreztem valami összeállt",
+    "Abban a percben tudtam, ezt soha nem felejtem el,",
+    "Gyerekeimnek mesélem majd, that's how I met your mother",
+  ],
+];
 
 function App() {
-  //const [count, setCount] = useState(0);
-
-  return (
-    <h1>Love is in the Air</h1>
-    // <>
-    //   <div>
-    //     <a href="https://vite.dev" target="_blank">
-    //       <img src={viteLogo} className="logo" alt="Vite logo" />
-    //     </a>
-    //     <a href="https://react.dev" target="_blank">
-    //       <img src={reactLogo} className="logo react" alt="React logo" />
-    //     </a>
-    //   </div>
-    //   <h1>Love is in the Air</h1>
-    //   <div className="card">
-    //     <button onClick={() => setCount((count) => count + 1)}>
-    //       count is {count}
-    //     </button>
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to test HMR
-    //     </p>
-    //   </div>
-    //   <p className="read-the-docs">
-    //     Click on the Vite and React logos to learn more
-    //   </p>
-    // </>
-  );
+  return <LoveScene poem={poem} />;
 }
 
 export default App;

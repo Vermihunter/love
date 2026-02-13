@@ -1,0 +1,643 @@
+@use "sass:math";
+
+@import url("https://fonts.googleapis.com/css?family=VT323");
+@import url("https://fonts.googleapis.com/css?family=Space+Mono");
+
+$night-sky: #000521;
+$ground: #190906;
+$heart: #f20e0e;
+$white: #fafafa;
+
+$skin: #f7ffaf;
+$eyes: #222;
+
+$my-hair: #444;
+$my-shirt: #42f483;
+$my-pants: #333;
+
+$your-hair: #474025;
+$your-dress: #444;
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  opacity: 1;
+  animation-name: blink;
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-iteration-count: 3;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.sky {
+  list-style: none;
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  z-index: 0; //-1;
+  pointer-events: none;
+
+  &.animate {
+    animation-name: sky;
+    animation-delay: 6s;
+    animation-duration: 50s;
+    animation-fill-mode: forwards;
+  }
+
+  .star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: $white;
+    opacity: 1;
+
+    &.animate {
+      animation-name: star;
+      animation-fill-mode: forwards;
+    }
+
+    // @for $i from 1 through 420 {
+    //   &:nth-of-type(#{$i + 1}) {
+    //     left: random(1920 * 2) + px;
+    //     top: random(1080 * 2) + px;
+    //     animation-duration: random(120) + s;
+    //   }
+    // }
+
+    @for $i from 1 through 420 {
+      &:nth-of-type(#{$i}) {
+        left: #{math.random(3840)}px;
+        top: #{math.random(2160)}px;
+        animation-duration: #{math.random(120)}s;
+      }
+    }
+    z-index: 1;
+  }
+}
+
+.ground {
+  background: linear-gradient(
+    to top right,
+    lighten($night-sky, 10%),
+    $night-sky
+  );
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    content: "";
+    background: linear-gradient(to top right, darken($ground, 5%), $ground);
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    height: 20%;
+    width: 200%;
+    z-index: -1;
+    border-radius: 50% 50% 0 0;
+  }
+
+  &.animate:after {
+    animation-name: ground;
+    animation-fill-mode: forwards;
+    animation-duration: 12s;
+  }
+}
+
+.minihearts {
+  list-style-type: none;
+  position: relative;
+  left: 57px;
+  opacity: 0;
+
+  &.animate {
+    animation-name: minihearts;
+    animation-delay: 1s;
+    animation-duration: 14s;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.miniheart {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+  background-color: $heart;
+  transform: rotate(210deg);
+
+  &:nth-of-type(1) {
+    top: -20px;
+    left: 10px;
+  }
+
+  &:nth-of-type(2) {
+    top: -60px;
+    left: 30px;
+  }
+
+  &:nth-of-type(3) {
+    top: -80px;
+    left: 10px;
+  }
+
+  &:nth-of-type(4) {
+    top: -120px;
+    left: 20px;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    background: $heart;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+  }
+
+  &:before {
+    top: 5px;
+  }
+}
+
+.us {
+  height: 1px;
+  width: 1px;
+  margin: auto auto 250px auto;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+
+  &.animate {
+    animation-name: us;
+    animation-delay: 4s;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+.me,
+.you {
+  display: grid;
+  grid-template-areas:
+    "......... head .........."
+    "arm__left body arm__right"
+    "leg__left .... leg__right";
+
+  .head {
+    background-color: $skin;
+    grid-area: head;
+    height: 20px;
+    width: 20px;
+    margin: auto;
+    position: relative;
+
+    &.animate {
+      &:after,
+      &:before {
+        animation-name: eyes;
+        animation-duration: 4s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    &:after,
+    &:before {
+      content: "";
+      width: 4px;
+      height: 6px;
+      background-color: $eyes;
+      position: absolute;
+      top: 5px;
+      z-index: 2;
+    }
+
+    &:after {
+      left: 15%;
+    }
+
+    &:before {
+      right: 15%;
+    }
+  }
+
+  .body {
+    background-color: $skin;
+    grid-area: body;
+    height: 50px;
+    width: 30px;
+  }
+
+  .arm__left {
+    background-color: $skin;
+    grid-area: arm__left;
+    height: 40px;
+    width: 12px;
+  }
+
+  .arm__right {
+    background-color: $skin;
+    grid-area: arm__right;
+    height: 40px;
+    width: 12px;
+  }
+
+  .leg__left {
+    background-color: $skin;
+    grid-area: leg__left;
+    height: 50px;
+    width: 10px;
+    position: relative;
+    right: -15px;
+  }
+
+  .leg__right {
+    background-color: $skin;
+    grid-area: leg__right;
+    height: 50px;
+    width: 10px;
+    position: relative;
+    left: -10px;
+  }
+}
+
+.me {
+  margin-right: 10px;
+
+  .hair {
+    position: absolute;
+    background-color: $my-hair;
+    width: 100%;
+    height: 10px;
+    top: -7px;
+    border-radius: 3px 6px 9px 12px;
+  }
+
+  .body {
+    background-color: $my-shirt;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0px;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid $skin;
+      border-bottom: transparent;
+      z-index: 2;
+    }
+  }
+
+  .arm__left {
+    transform: rotate(15deg);
+    position: relative;
+
+    &:before {
+      content: "";
+      background-color: $my-shirt;
+      width: 100%;
+      height: 10px;
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .arm__right {
+    transform: rotate(-35deg);
+    position: relative;
+
+    &:before {
+      content: "";
+      background-color: $my-shirt;
+      width: 100%;
+      height: 10px;
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .leg__left {
+    background-color: $my-pants;
+  }
+
+  .leg__right {
+    background-color: $my-pants;
+  }
+}
+
+.you {
+  margin-left: 10px;
+
+  .head {
+    position: relative;
+  }
+
+  .hair {
+    position: relative;
+
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      background-color: $your-hair;
+      border-radius: 10px 10px 0 0;
+      z-index: -1;
+      width: 40px;
+      height: 25px;
+    }
+  }
+
+  .body {
+    position: relative;
+
+    &:before {
+      content: "";
+      background-color: $your-dress;
+      width: 100%;
+      height: 130%;
+      border-radius: 0 0 -20% -20%;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0px;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 14px solid $skin;
+      border-bottom: transparent;
+      z-index: 2;
+    }
+  }
+
+  .dress {
+    position: absolute;
+    left: -13px;
+    top: 10px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid $your-dress;
+    border-top: transparent;
+    z-index: 2;
+  }
+
+  .arm__left {
+    transform: rotate(35deg);
+  }
+
+  .arm__right {
+    transform: rotate(-30deg);
+
+    &:after {
+      content: "";
+      width: 2px;
+      height: 300px;
+      background-color: $white;
+      bottom: -50px;
+      right: -90px;
+      transform: rotate(45deg);
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
+
+.heart {
+  position: fixed;
+  top: 20%;
+  left: 55%;
+  z-index: 2;
+
+  &.animate {
+    animation-name: heart;
+    animation-delay: 4s;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+  }
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 240px;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 60%;
+    background-color: $heart;
+    transform: rotate(-60deg);
+  }
+
+  &:before {
+    transform: rotate(60deg);
+    left: 110px;
+  }
+}
+
+.poem {
+  color: $white;
+  font-family: "Space mono", monospace;
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  text-shadow: 3px 3px 3px rgba($night-sky, 0.4);
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .estrofe {
+    margin-bottom: 1.5rem;
+    opacity: 0;
+
+    &.animate {
+      animation-name: estrofe;
+      animation-duration: 4s;
+      animation-fill-mode: forwards;
+    }
+
+    &:nth-of-type(1) {
+      animation-delay: 10s;
+    }
+
+    &:nth-of-type(2) {
+      animation-delay: 20s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 30s;
+    }
+
+    &:nth-of-type(4) {
+      animation-delay: 40s;
+    }
+
+    &:nth-of-type(5) {
+      animation-delay: 50s;
+    }
+  }
+
+  .verse {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+button {
+  font-family: "VT323", monospace;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  border: 10px dashed $heart;
+  font-size: 10vmin;
+  letter-spacing: 3vmin;
+  padding: 2vmin;
+  text-align: center;
+  color: $white;
+  text-transform: uppercase;
+  background-color: lighten($heart, 13%);
+}
+
+.about {
+  font-family: "Space mono", monospace;
+  font-size: 1.1rem;
+  position: fixed;
+  bottom: 1.1rem;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  text-align: center;
+  color: $white;
+}
+
+@keyframes ground {
+  from {
+    height: 20%;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@keyframes star {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes estrofe {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sky {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes us {
+  from {
+    bottom: 0;
+    right: 0;
+    transform: rotate(0);
+  }
+
+  to {
+    bottom: 20%;
+    right: -10%;
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes heart {
+  from {
+    top: 20%;
+    left: 55%;
+    transform: rotate(0);
+  }
+
+  to {
+    top: 10%;
+    left: 65%;
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes eyes {
+  0% {
+    width: 4px;
+    height: 6px;
+  }
+
+  50% {
+    width: 4px;
+    height: 2px;
+  }
+
+  100% {
+    width: 4px;
+    height: 6px;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes minihearts {
+  0% {
+    opacity: 0;
+    left: 57px;
+    top: 0;
+  }
+
+  50% {
+    opacity: 1;
+    left: -57px;
+    top: -100px;
+  }
+
+  100% {
+    opacity: 0;
+    left: -157px;
+    top: -200px;
+  }
+}
