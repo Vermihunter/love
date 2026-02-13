@@ -32,8 +32,10 @@ export default function LoveScene({ poem }: Props) {
         play
       </button>
 
+      <p className="about">
+        Boldog valentin napot szívem ♡ Szeretlek - 2026.02.14
+      </p>
       <Sky isPlaying={isPlaying} />
-
       <div className={`heart ${isPlaying ? "animate" : ""}`} />
       <Characters isPlaying={isPlaying} />
       <Poem poem={poem} isPlaying={isPlaying} />
