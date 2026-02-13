@@ -1,6 +1,10 @@
 import Person from "./Person";
 
-export default function Characters({ isPlaying }) {
+type Props = {
+  isPlaying: boolean;
+};
+
+export default function Characters({ isPlaying }: Props) {
   return (
     <div className={`us ${isPlaying ? "animate" : ""}`}>
       <ul className={`minihearts ${isPlaying ? "animate" : ""}`}>

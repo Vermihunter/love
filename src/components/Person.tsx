@@ -1,4 +1,9 @@
-export default function Person({ type, isPlaying }) {
+type Props = {
+  type: "me" | "you";
+  isPlaying: boolean;
+};
+
+export default function Person({ type, isPlaying }: Props) {
   return (
     <div className={type}>
       <div className={`head ${isPlaying ? "animate" : ""}`}>

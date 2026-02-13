@@ -3,11 +3,16 @@ import Sky from "./Sky";
 import Characters from "./Characters";
 import Poem from "./Poem";
 
-export default function LoveScene({ poem }) {
+type Props = {
+  poem: string[][];
+};
+
+export default function LoveScene({ poem }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handlePlay = () => {
+    if (!audioRef.current) return;
     const audio = audioRef.current;
 
     audio.src =
