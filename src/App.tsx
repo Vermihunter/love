@@ -3,8 +3,15 @@
 // import viteLogo from "/vite.svg";
 //import "./App.css";
 import "./styles.scss";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import LoveScene from "./components/LoveScene";
+import WomensDayPage from "./components/WomansDayPage";
 
 const poem = [
   [
@@ -28,6 +35,17 @@ const poem = [
 ];
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* URL: /valentine */}
+        <Route path="/valentine" element={<LoveScene poem={poem} />} />
+        <Route path="/womens-day" element={<WomensDayPage />} />
+        <Route path="/" element={<Navigate to="/womens-day" />} />
+      </Routes>
+    </Router>
+  );
+
   return <LoveScene poem={poem} />;
 }
 
