@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 import LoveScene from "./components/LoveScene";
-import WomensDayPage from "./components/WomansDayPage";
+import WomensDayPage from "./components/WomansDayPage.js";
 
 const poem = [
   [

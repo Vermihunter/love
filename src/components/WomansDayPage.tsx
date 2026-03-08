@@ -1,10 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const WomensDayPage = () => {
+const WomensDayPage: React.FC = () => {
+  // Create an array for particles
   const particles = Array.from({ length: 15 });
 
-  const particleVariants = {
+  const particleVariants: Variants = {
     animate: () => ({
       y: [0, -40, 0],
       x: [0, Math.random() * 30 - 15, 0],
@@ -17,7 +19,7 @@ const WomensDayPage = () => {
     }),
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -25,7 +27,7 @@ const WomensDayPage = () => {
     },
   };
 
-  const stemVariants = {
+  const stemVariants: Variants = {
     hidden: { pathLength: 0, scaleY: 0.8, originY: "100%" },
     visible: {
       pathLength: 1,
@@ -38,7 +40,7 @@ const WomensDayPage = () => {
     },
   };
 
-  const leafVariants = {
+  const leafVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
     visible: {
       scale: 1,
@@ -47,7 +49,7 @@ const WomensDayPage = () => {
     },
   };
 
-  const bloomContainerVariants = {
+  const bloomContainerVariants: Variants = {
     hidden: { opacity: 0, scale: 0.6, y: 10 },
     visible: {
       opacity: 1,
@@ -62,16 +64,16 @@ const WomensDayPage = () => {
     },
   };
 
-  const petalVariants = {
+  const petalVariants: Variants = {
     hidden: { opacity: 0, scale: 0.3, originY: "100%" },
-    visible: (i) => ({
+    visible: () => ({
       opacity: 1,
       scale: 1,
       transition: { duration: 1, ease: "easeOut" },
     }),
   };
 
-  const heartPulseVariants = {
+  const heartPulseVariants: Variants = {
     animate: {
       scale: [1, 1.15, 1],
       transition: {
@@ -83,19 +85,20 @@ const WomensDayPage = () => {
     },
   };
 
-  const titleVariants = {
+  const titleVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 1.2 } },
   };
 
-  const styles = {
+  // Defining styles with React.CSSProperties for full TS support
+  const styles: Record<string, React.CSSProperties> = {
     outer: {
       height: "100vh",
       width: "100vw",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center", // Centers the whole block vertically
+      justifyContent: "center",
       overflow: "hidden",
       position: "relative",
       fontFamily: "'Segoe UI', Roboto, sans-serif",
@@ -112,7 +115,7 @@ const WomensDayPage = () => {
     textContainer: {
       textAlign: "center",
       color: "#880e4f",
-      marginBottom: "20px", // Space between text and flower
+      marginBottom: "20px",
     },
     h1: {
       fontSize: "2.5rem",
@@ -163,15 +166,13 @@ const WomensDayPage = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* TEXT ON TOP */}
         <motion.div style={styles.textContainer} variants={titleVariants}>
-          <h1 style={styles.h1}>Boldog Nőnapot Kívánok Szívem </h1>
+          <h1 style={styles.h1}>Boldog Nőnapot Kívánok Szívem</h1>
           <p style={styles.p}>
             Köszönöm hogy vagy nekem és szebbé teszed az életem ❤️
           </p>
         </motion.div>
 
-        {/* FLOWER BELOW TEXT */}
         <div style={styles.canvas}>
           <svg viewBox="0 0 200 250" style={{ width: "100%", height: "100%" }}>
             <motion.path
@@ -206,38 +207,25 @@ const WomensDayPage = () => {
                 variants={heartPulseVariants}
                 animate="animate"
               />
-              <motion.g custom={0} variants={petalVariants}>
-                <path
-                  d="M100 110 C90 110 85 90 100 75 C115 90 110 110 100 110 Z"
-                  fill="#f8bbd0"
-                  stroke="#f06292"
-                  strokeWidth="0.5"
-                />
-              </motion.g>
-              <motion.g custom={1} variants={petalVariants}>
-                <path
-                  d="M100 110 C85 105 75 85 90 70 C105 85 110 100 100 110 Z"
-                  fill="#f48fb1"
-                  stroke="#f06292"
-                  strokeWidth="0.5"
-                />
-              </motion.g>
-              <motion.g custom={2} variants={petalVariants}>
-                <path
-                  d="M100 110 C115 105 125 85 110 70 C95 85 90 100 100 110 Z"
-                  fill="#f48fb1"
-                  stroke="#f06292"
-                  strokeWidth="0.5"
-                />
-              </motion.g>
-              <motion.g custom={3} variants={petalVariants}>
-                <path
-                  d="M100 110 C95 110 90 95 100 85 C110 95 105 110 100 110 Z"
-                  fill="#ff80ab"
-                  stroke="#f06292"
-                  strokeWidth="0.5"
-                />
-              </motion.g>
+              {[0, 1, 2, 3].map((i) => {
+                const paths = [
+                  "M100 110 C90 110 85 90 100 75 C115 90 110 110 100 110 Z",
+                  "M100 110 C85 105 75 85 90 70 C105 85 110 100 100 110 Z",
+                  "M100 110 C115 105 125 85 110 70 C95 85 90 100 100 110 Z",
+                  "M100 110 C95 110 90 95 100 85 C110 95 105 110 100 110 Z",
+                ];
+                const colors = ["#f8bbd0", "#f48fb1", "#f48fb1", "#ff80ab"];
+                return (
+                  <motion.g key={i} custom={i} variants={petalVariants}>
+                    <path
+                      d={paths[i]}
+                      fill={colors[i]}
+                      stroke="#f06292"
+                      strokeWidth="0.5"
+                    />
+                  </motion.g>
+                );
+              })}
             </motion.g>
           </svg>
         </div>
@@ -245,4 +233,5 @@ const WomensDayPage = () => {
     </div>
   );
 };
+
 export default WomensDayPage;
