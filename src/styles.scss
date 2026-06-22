@@ -641,3 +641,197 @@ button {
     top: -200px;
   }
 }
+
+.anniversary-page {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 32px 18px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 191, 216, 0.85),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 220, 240, 0.85),
+      transparent 36%
+    ),
+    linear-gradient(135deg, #fff7fb 0%, #ffe8f1 48%, #fff8ec 100%);
+  color: #5a2335;
+}
+
+.anniversary-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  color: rgba(190, 58, 100, 0.18);
+  animation: floatHeart 8s ease-in-out infinite;
+}
+
+.heart-one {
+  top: 8%;
+  left: 8%;
+}
+
+.heart-two {
+  top: 18%;
+  right: 11%;
+  animation-delay: 1.2s;
+}
+
+.heart-three {
+  bottom: 13%;
+  left: 12%;
+  animation-delay: 2.4s;
+}
+
+.heart-four {
+  bottom: 8%;
+  right: 10%;
+  animation-delay: 3.6s;
+}
+
+.anniversary-card {
+  width: min(920px, 100%);
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 5vw, 64px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 24px 90px rgba(133, 34, 73, 0.18);
+  backdrop-filter: blur(18px);
+  text-align: center;
+}
+
+.anniversary-kicker {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #b53b68;
+}
+
+.anniversary-card h1 {
+  margin: 0;
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 0.92;
+  color: #8f274c;
+  text-shadow: 0 8px 30px rgba(255, 143, 183, 0.35);
+}
+
+.anniversary-subtitle {
+  margin: 24px auto 0;
+  max-width: 620px;
+  font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+  color: #713247;
+}
+
+.anniversary-letter {
+  margin: 34px auto 0;
+  max-width: 720px;
+  text-align: left;
+  font-size: clamp(1rem, 2.1vw, 1.16rem);
+  line-height: 1.78;
+}
+
+.anniversary-letter p {
+  margin: 0 0 18px;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.reason-card {
+  border-radius: 24px;
+  padding: 18px;
+  background: rgba(255, 244, 249, 0.82);
+  border: 1px solid rgba(190, 58, 100, 0.12);
+  text-align: left;
+}
+
+.reason-card span {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: #ffe1ed;
+  color: #a82957;
+}
+
+.reason-card p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.anniversary-ending {
+  margin: 34px 0 0;
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+  font-weight: 800;
+  color: #982b51;
+}
+
+.anniversary-ending span {
+  display: inline-block;
+  animation: heartbeat 1.45s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(6deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.18);
+  }
+
+  55% {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: 680px) {
+  .anniversary-page {
+    padding: 18px 12px;
+  }
+
+  .anniversary-card {
+    border-radius: 28px;
+  }
+
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .anniversary-letter {
+    text-align: center;
+  }
+}
