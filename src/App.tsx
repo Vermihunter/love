@@ -3,12 +3,7 @@
 // import viteLogo from "/vite.svg";
 //import "./App.css";
 import "./styles.scss";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LoveScene from "./components/LoveScene";
 import WomensDayPage from "./components/WomansDayPage.js";
