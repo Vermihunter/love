@@ -1131,8 +1131,16 @@ html {
   place-items: center;
   padding: 24px;
   background:
-    radial-gradient(circle at top left, rgba(255, 178, 213, 0.9), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(255, 235, 194, 0.9), transparent 36%),
+    radial-gradient(
+      circle at top left,
+      rgba(255, 178, 213, 0.9),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 235, 194, 0.9),
+      transparent 36%
+    ),
     linear-gradient(135deg, #fff7fb 0%, #ffe7f1 52%, #fff8ec 100%);
   color: #552033;
 }
@@ -1613,7 +1621,11 @@ html {
   text-decoration: none;
   color: inherit;
   background:
-    radial-gradient(circle at top right, rgba(255, 198, 220, 0.76), transparent 42%),
+    radial-gradient(
+      circle at top right,
+      rgba(255, 198, 220, 0.76),
+      transparent 42%
+    ),
     rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(255, 255, 255, 0.78);
   box-shadow: 0 24px 88px rgba(133, 34, 73, 0.18);
@@ -1718,8 +1730,16 @@ html {
 /* Half-year live memory builder */
 .live-builder-page {
   background:
-    radial-gradient(circle at 18% 12%, rgba(255, 219, 232, 0.9), transparent 28%),
-    radial-gradient(circle at 82% 8%, rgba(255, 246, 199, 0.55), transparent 26%),
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(255, 219, 232, 0.9),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 82% 8%,
+      rgba(255, 246, 199, 0.55),
+      transparent 26%
+    ),
     linear-gradient(135deg, #fff7f9 0%, #ffdce9 44%, #f3b4ce 100%);
 }
 
@@ -1748,17 +1768,19 @@ html {
 
 .live-builder-toolbar {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
   gap: 22px;
-  align-items: center;
+  align-items: start;
   padding: clamp(22px, 4vw, 38px);
 }
 
 .live-builder-toolbar h1 {
+  max-width: 640px;
   margin: 0;
   color: #8f274c;
   font-size: clamp(2.4rem, 7vw, 5.6rem);
   line-height: 0.9;
+  overflow-wrap: normal;
 }
 
 .live-builder-toolbar p:not(.anniversary-kicker) {
@@ -1775,6 +1797,15 @@ html {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 12px;
+}
+
+.toolbar-actions {
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+.toolbar-actions .romantic-button {
+  white-space: nowrap;
 }
 
 .live-builder-layout {
@@ -2058,23 +2089,43 @@ html {
 }
 
 .live-memory-card-cute {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 234, 243, 0.82));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(255, 234, 243, 0.82)
+  );
 }
 
 .live-memory-card-funny {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 246, 209, 0.82));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(255, 246, 209, 0.82)
+  );
 }
 
 .live-memory-card-deep {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(235, 229, 255, 0.82));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(235, 229, 255, 0.82)
+  );
 }
 
 .live-memory-card-important {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(226, 246, 255, 0.82));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(226, 246, 255, 0.82)
+  );
 }
 
 .live-memory-card-random {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(228, 255, 242, 0.82));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(228, 255, 242, 0.82)
+  );
 }
 
 .live-memory-media-grid {
@@ -2199,6 +2250,10 @@ html {
     grid-template-columns: 1fr;
   }
 
+  .live-builder-toolbar h1 {
+    max-width: none;
+  }
+
   .toolbar-actions,
   .memory-form-actions,
   .poster-bottom-actions {
@@ -2291,4 +2346,55 @@ html {
 /* Keep the original submitted half-year gift visually separate from the live builder. */
 .original-half-year-card {
   margin: 0 auto;
+}
+
+/* Live poster editing / import continuation */
+.hidden-import-input {
+  display: none;
+}
+
+.editing-memory-form {
+  padding: 18px;
+  border: 1px solid rgba(181, 59, 104, 0.22);
+  border-radius: 26px;
+  background: rgba(255, 238, 246, 0.58);
+}
+
+.editable-memory-card {
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.editable-memory-card:hover,
+.editable-memory-card:focus-visible {
+  transform: translateY(-4px) rotate(-0.25deg);
+  border-color: rgba(181, 59, 104, 0.36);
+  box-shadow: 0 24px 64px rgba(133, 34, 73, 0.18);
+  outline: none;
+}
+
+.edit-memory-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: #8f274c;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.edit-memory-pill::before {
+  content: "✎";
+}
+
+.final-poster-mode .edit-memory-pill {
+  display: none;
 }
