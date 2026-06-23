@@ -13,6 +13,7 @@ import {
 import LoveScene from "./components/LoveScene";
 import WomensDayPage from "./components/WomansDayPage.js";
 import HalfYearAnniversaryPage from "./components/HalfYearAnniversaryPage";
+import MemoryHomePage from "./components/MemoryHomePage";
 
 const poem = [
   [
@@ -42,7 +43,8 @@ function App() {
         {/* URL: /valentine */}
         <Route path="/valentine" element={<LoveScene poem={poem} />} />
         <Route path="/womens-day" element={<WomensDayPage />} />
-        <Route path="/" element={<Navigate to="/womens-day" />} />
+        <Route path="/" element={<MemoryHomePage />} />
+
         <Route path="/half-year" element={<HalfYearAnniversaryPage />} />
       </Routes>
     </Router>
