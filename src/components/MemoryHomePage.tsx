@@ -2,6 +2,14 @@ import { Link } from "react-router-dom";
 
 const memories = [
   {
+    path: "/half-year",
+    date: "Június 23.",
+    title: "Fél évünk",
+    emoji: "❤️",
+    description:
+      "A mai online randinkhoz: emlékidézős kártyák, kérdések, és egy kis közös digitális poszter.",
+  },
+  {
     path: "/valentine",
     date: "Február 14.",
     title: "Valentin-nap",
@@ -16,13 +24,6 @@ const memories = [
     emoji: "🌷",
     description:
       "Hogy emlékeztesselek: mennyire különleges, gyönyörű és értékes vagy.",
-  },
-  {
-    path: "/half-year",
-    date: "Június 23",
-    title: "Fél éves évforduló",
-    emoji: "❤️",
-    description: "A storying első fél évének margójára...",
   },
 ];
 
@@ -43,11 +44,11 @@ export default function MemoryHomePage() {
 
         <p className="memory-intro">
           Itt összegyűjtöttem azokat a kis meglepetéseket, amiket eddig neked
-          csináltam. Mindegyik egy apró darab abból, amit érzek irántad.
+          csináltam. Ma este a fél éves évfordulós oldal az első kis ajtó.
         </p>
       </section>
 
-      <section className="memory-card-grid" aria-label="Korábbi oldalak">
+      <section className="memory-card-grid" aria-label="Emlékoldalak">
         {memories.map((memory) => (
           <Link to={memory.path} className="memory-card" key={memory.path}>
             <div className="memory-card-top">

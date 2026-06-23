@@ -9,6 +9,7 @@ import LoveScene from "./components/LoveScene";
 import WomensDayPage from "./components/WomansDayPage.js";
 import HalfYearAnniversaryPage from "./components/HalfYearAnniversaryPage";
 import MemoryHomePage from "./components/MemoryHomePage";
+import PasswordGate from "./components/PasswordGate";
 
 const poem = [
   [
@@ -34,18 +35,17 @@ const poem = [
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* URL: /valentine */}
-        <Route path="/valentine" element={<LoveScene poem={poem} />} />
-        <Route path="/womens-day" element={<WomensDayPage />} />
-        <Route path="/" element={<MemoryHomePage />} />
-
-        <Route path="/half-year" element={<HalfYearAnniversaryPage />} />
-      </Routes>
+      <PasswordGate>
+        <Routes>
+          {/* URL: /valentine */}
+          <Route path="/valentine" element={<LoveScene poem={poem} />} />
+          <Route path="/womens-day" element={<WomensDayPage />} />
+          <Route path="/half-year" element={<HalfYearAnniversaryPage />} />
+          <Route path="/" element={<MemoryHomePage />} />
+        </Routes>
+      </PasswordGate>
     </Router>
   );
-
-  return <LoveScene poem={poem} />;
 }
 
 export default App;
